@@ -1,15 +1,22 @@
 import React, { useState } from 'react'; 
 import Login from './components/Login';
- 
+import Dashboard from './components/Dashboard';
+
 function App() {
   // let isLoggedIn = false;
+  // if(localStorage.getItem('password') === null)
   const [loggedIn, setLoggedIn] = useState(false)
   if (!loggedIn)
-    return <Login setLoggedIn = {setLoggedIn}/>
+  {
+    if(localStorage.getItem('password') === null || localStorage.getItem('password') === "")
+      return <Login setLoggedIn = {setLoggedIn}/>
+  }
+    
+
 
   return (
       <div className="App">
-        <h1>You made it!</h1>
+        <Dashboard />
       </div>
     );
   

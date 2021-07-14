@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import '../index.css';
+
+var CryptoJS = require("crypto-js");
 
 const Login = ({ setLoggedIn }) => {
       const email = useFormInput('');
@@ -8,7 +11,9 @@ const Login = ({ setLoggedIn }) => {
         if (email.value === "test" && password.value === "test123")
         {
           alert("You are an admin!");
-          setLoggedIn = true;
+          setLoggedIn(true);
+          localStorage.setItem('email', email.value);
+          localStorage.setItem('password', CryptoJS.AES.encrypt(JSON.stringify(password.value), 'test').toString());
         }
         else
         {
